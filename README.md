@@ -8,9 +8,16 @@
 6) http://localhost:8080/orders/v1/next-tracking-number?origin_country_id=MY&destination_country_id=ID&weight=1.234&created_at=2018-11-20T19:29:32%2B08:00&customer_id=de619854-b59b-324tefv&customer_name=Redbox%20Logistics&customer_slug=redbox-logistics
 7) Since we need to validate the query parameters as per the request, spring boot starter validation is used to add the necessary validations, and these parameters should be properly validated.
 8) If valid inputs are provided as per the requirements, the response will include a tracking number, date, and status, along with a 200 status code.
-9) If any missing paramater there will be a 400 BAD request in response along with the missing paramter.
+9) If any missing parameter there will be a 400 BAD request in response along with the missing parameter.
 10) If an exception occurs while generating the tracking number, a custom exception will be thrown and handled by the ExceptionHandler.
 11) If any other exception occurs, the handleAllException method in the ExceptionHandler will handle it.
 12) To deploy the application as a container DockerFile has been used.
+
+AWS Cloud Deployment Update:
+===========================
+1) The image has been pushed to AWS ECR
+2) Created a cluster and a task definition in ECS.
+3) Created a Service with 2 instances with auto-scaling and load balancing
+4) The deployment has failed due to some health check issues.
 
 
