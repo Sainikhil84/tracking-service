@@ -70,6 +70,7 @@ public class TrackingController {
 		logger.info("TrackingController::getTrackingNumber");
 		TrackingResponseDto trackingResponseDto = this.trackingService.getTrackingNumber(originCountryId,
 				destinationCountryId, weight, createdAt, customerId, customerName, customerSlug);
+		logger.info("TrackingController::getTrackingNumber::trackingResponseDto::{}", trackingResponseDto);
 		if (trackingResponseDto == null) {
 			throw new TrackingNumberGenerationException("Failed to generate tracking number.",
 					HttpStatus.INTERNAL_SERVER_ERROR);
