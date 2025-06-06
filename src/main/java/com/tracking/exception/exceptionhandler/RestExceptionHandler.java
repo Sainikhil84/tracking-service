@@ -23,6 +23,10 @@ import com.tracking.exception.TrackingNumberGenerationException;
 @RestControllerAdvice
 public class RestExceptionHandler {
 
+	/**
+	 * @param ex
+	 * @return
+	 */
 	@ExceptionHandler(TrackingNumberGenerationException.class)
 	public ResponseEntity<ErrorDetails> handleUnApplicationException(TrackingNumberGenerationException ex) {
 		ErrorDetails errorDetails = new ErrorDetails(HttpStatus.INTERNAL_SERVER_ERROR.value(),
@@ -30,6 +34,10 @@ public class RestExceptionHandler {
 		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	/**
+	 * @param ex
+	 * @return
+	 */
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public ResponseEntity<Object> handleMissingParams(MissingServletRequestParameterException ex) {
 		Map<String, String> error = new HashMap<>();
@@ -38,6 +46,10 @@ public class RestExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
+	/**
+	 * @param ex
+	 * @return
+	 */
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorDetails> handleAllException(Exception ex) {
 		ErrorDetails errorDetails = new ErrorDetails(HttpStatus.INTERNAL_SERVER_ERROR.value(),

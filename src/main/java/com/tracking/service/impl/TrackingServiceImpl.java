@@ -8,14 +8,16 @@
 package com.tracking.service.impl;
 
 import java.math.BigDecimal;
-import java.security.SecureRandom;
 import java.time.OffsetDateTime;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
 import com.tracking.dto.TrackingResponseDto;
 import com.tracking.exception.TrackingNumberGenerationException;
 import com.tracking.service.TrackingService;
@@ -30,7 +32,6 @@ public class TrackingServiceImpl implements TrackingService {
 	/** CHARACTERS */
 	private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-	private static final SecureRandom random = new SecureRandom();
 
 	private Set<String> checkDuplicates = ConcurrentHashMap.newKeySet();
 
@@ -73,13 +74,14 @@ public class TrackingServiceImpl implements TrackingService {
 			var destination = destinationCountryId.toUpperCase().replaceAll("[^A-Z]", "");
 			var fixedLength = origin.length() + destination.length();
 			var randomLength = 16 - fixedLength;
-			StringBuilder randomPart = new StringBuilder();
+			StringBuilder randomString = new StringBuilder();
+			ThreadLocalRandom random = ThreadLocalRandom.current();
 			for (int i = 0; i < randomLength; i++) {
 				int index = random.nextInt(CHARACTERS.length());
-				randomPart.append(CHARACTERS.charAt(index));
+				randomString.append(CHARACTERS.charAt(index));
 			}
 			sb.append(origin);
-			sb.append(randomPart);
+			sb.append(randomString);
 			sb.append(destination);
 			String trackingNumber = sb.toString();
 			if (checkDuplicates.contains(trackingNumber)) {

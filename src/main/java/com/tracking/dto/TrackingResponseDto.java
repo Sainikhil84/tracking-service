@@ -17,7 +17,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 
+ * TrackingResponseDto
  */
 @Setter
 @Getter

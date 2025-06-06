@@ -10,12 +10,12 @@ package com.tracking.exception;
 import org.springframework.http.HttpStatus;
 
 /**
- * 
+ * TrackingNumberGenerationException
  */
 public class TrackingNumberGenerationException extends RuntimeException {
 
 	/**
-	 * long
+	 * serialVersionUID
 	 * 
 	 */
 	private static final long serialVersionUID = -5661413187372534798L;
