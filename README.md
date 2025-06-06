@@ -1,5 +1,4 @@
 # tracking-service
-This service is related to tracking the orders
 
 1)Clone the repository using the git clone command.
 2)Import the cloned service into your workspace.
