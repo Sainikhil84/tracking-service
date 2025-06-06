@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.tracking.constants.ErrorConstants;
 import com.tracking.dto.TrackingResponseDto;
 import com.tracking.exception.TrackingNumberGenerationException;
 import com.tracking.service.TrackingService;
@@ -72,7 +74,7 @@ public class TrackingController {
 				destinationCountryId, weight, createdAt, customerId, customerName, customerSlug);
 		logger.info("TrackingController::getTrackingNumber::trackingResponseDto::{}", trackingResponseDto);
 		if (trackingResponseDto == null) {
-			throw new TrackingNumberGenerationException("Failed to generate tracking number.",
+			throw new TrackingNumberGenerationException(ErrorConstants.COMMON_ERROR_01,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return ResponseEntity.ok(trackingResponseDto);

@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.tracking.constants.ErrorConstants;
 import com.tracking.dto.TrackingResponseDto;
 import com.tracking.exception.TrackingNumberGenerationException;
 import com.tracking.service.TrackingService;
@@ -31,7 +32,6 @@ public class TrackingServiceImpl implements TrackingService {
 
 	/** CHARACTERS */
 	private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
 
 	private Set<String> checkDuplicates = ConcurrentHashMap.newKeySet();
 
@@ -56,7 +56,7 @@ public class TrackingServiceImpl implements TrackingService {
 					.status("Success").build();
 		} catch (Exception e) {
 			logger.error("TrackingServiceImpl::getTrackingNumber::catch block::{}", e);
-			throw new TrackingNumberGenerationException("Failed to generate Tracking Number",
+			throw new TrackingNumberGenerationException(ErrorConstants.COMMON_ERROR_01,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -85,7 +85,7 @@ public class TrackingServiceImpl implements TrackingService {
 			sb.append(destination);
 			String trackingNumber = sb.toString();
 			if (checkDuplicates.contains(trackingNumber)) {
-				throw new TrackingNumberGenerationException("Duplicate tracking number generated:",
+				throw new TrackingNumberGenerationException(ErrorConstants.DUPLICATE_TRACKING_NUMBER,
 						HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			checkDuplicates.add(trackingNumber);
@@ -93,7 +93,7 @@ public class TrackingServiceImpl implements TrackingService {
 			return trackingNumber;
 		} catch (Exception e) {
 			logger.error("TrackingServiceImpl::getTrackingNumber::catch block::{}", e);
-			throw new TrackingNumberGenerationException("Failed to generate random Tracking Number",
+			throw new TrackingNumberGenerationException(ErrorConstants.COMMON_ERROR_02,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
