@@ -15,10 +15,11 @@ public final class ErrorConstants {
 	 */
 	public static final String COMMON_ERROR_02 = "Failed to generate random Tracking Number";
 	
+	
 	/**
-	 * DUPLICATE_TRACKING_NUMBER
+	 * CACHE_KEY_ERROR
 	 */
-	public static final String DUPLICATE_TRACKING_NUMBER="Duplicate tracking number generated:";
+	public static final String CACHE_KEY_ERROR = "Failed to generate cache key";
 	
 	
 	/**

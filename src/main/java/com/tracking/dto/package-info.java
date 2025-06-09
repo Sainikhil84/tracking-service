@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2025 Your TGTech. All rights reserved.
+ * Copyright (c). All rights reserved.
  * 
  * @file package-info.java
  * @author nikhil
