@@ -98,7 +98,7 @@ public class TrackingServiceImpl implements TrackingService {
 				logger.info("TrackingServiceImpl::generateTrackingNumber::trackingNumber::{}", trackingNumber);
 				String redisKey = generateCacheKey(trackingNumber);
 				logger.info("TrackingServiceImpl::generateTrackingNumber::redisKey::{}", redisKey);
-				Boolean success = redisTemplate.opsForValue().setIfAbsent(redisKey, "number", Duration.ofDays(1));
+				Boolean success = redisTemplate.opsForValue().setIfAbsent(redisKey, "number", Duration.ofDays(90));
 				if (Boolean.TRUE.equals(success)) {
 					return trackingNumber;
 				}
